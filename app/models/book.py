@@ -7,7 +7,7 @@ class Book(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
-    author_id = Column(Integer, ForeignKey("authors.id"), nullable=False)
+    author_id = Column(Integer, ForeignKey("authors.id", ondelete="CASCADE"), nullable=False)
     published_date = Column(Date)
     isbn = Column(String, unique=True)
     price = Column(Float)
@@ -16,4 +16,8 @@ class Book(Base):
 
     # Relationships
     author = relationship("Author", back_populates="books")
-    reviews = relationship("Review", back_populates="book")
+    reviews = relationship(
+        "Review",
+        back_populates="book",
+        cascade="all, delete"   
+    )
