@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict, constr, field_validator, EmailStr
 from datetime import date, datetime
 from enum import Enum
+from typing import Optional
 class Role(str, Enum):
     admin = "admin"
     user = "user"
@@ -27,3 +28,8 @@ class UserResponse(UserBase):
 
 
 
+class UserUpdate(BaseModel):
+    username: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    role: Optional[Role] = None
