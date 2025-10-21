@@ -12,4 +12,4 @@ class Author(Base):
     nationality = Column(String)
 
     # Relationships
-    books = relationship("Book", back_populates="author")
+    books = relationship("Book", back_populates="author",cascade="all, delete" )

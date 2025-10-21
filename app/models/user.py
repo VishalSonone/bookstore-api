@@ -11,5 +11,9 @@ class User(Base):
     password_hash = Column(String, nullable=False)
     role = Column(String, nullable=False)
 
-    # Relationships
-    reviews = relationship("Review", back_populates="user")
+    # Relationship with Review
+    reviews = relationship(
+        "Review",
+        back_populates="user",
+        cascade="all, delete"     
+    )
