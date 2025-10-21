@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, ConfigDict, constr, field_validator, EmailStr
-
-
+from datetime import date
+from .author import AuthorResponse
 class BookBase(BaseModel):
     title: constr(min_length=2, max_length=100)
     author_id: int
@@ -24,3 +24,6 @@ class BookResponse(BookBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+class BookDetailResponse(BookResponse):
+    author: AuthorResponse   # nested author details
